@@ -38,7 +38,9 @@ make quick-start
 make add-catalog create-provider-alarms create-provider-kafka create-provider-cloudant
 
 docker ps -a
-
+sleep 60
+docker ps -a
+ps
 # move wskprops and wsk binary
 mv "$(pwd)"/.wskprops "${HOME}"/.wskprops
 sudo mv ./openwhisk-src/bin/wsk /usr/local/bin/wsk
