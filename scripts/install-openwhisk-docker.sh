@@ -35,10 +35,9 @@ git checkout 1c67cef739066f573b864b6f41f694fcae00a86b
 make quick-start
 
 # add system packages
-make add-catalog
-make create-provider-alarms
-make create-provider-kafka
-make create-provider-cloudant
+make add-catalog create-provider-alarms create-provider-kafka create-provider-cloudant
+
+docker ps -a
 
 # move wskprops and wsk binary
 mv "$(pwd)"/.wskprops "${HOME}"/.wskprops
