@@ -37,11 +37,11 @@ make quick-start
 # add system packages
 make add-catalog create-provider-alarms create-provider-kafka create-provider-cloudant
 
-openwhisk-src/bin/wsk -i trigger create periodic --feed /whisk.system/alarms/alarm -p cron '* * * * * *' -p trigger_payload '{"hello":"world"}'
+WSK_CONFIG_FILE="$(pwd)"/.wskprops openwhisk-src/bin/wsk -i trigger create periodic --feed /whisk.system/alarms/alarm -p cron '* * * * * *' -p trigger_payload '{"hello":"world"}'
 # check providers health
 echo "Waiting for alarm provider to be up"
 until (curl --silent http://localhost:8081/health > /dev/null); do printf '.'; sleep 5; done
-openwhisk-src/bin/wsk -i trigger create periodic --feed /whisk.system/alarms/alarm -p cron '* * * * * *' -p trigger_payload '{"hello":"world"}'
+WSK_CONFIG_FILE="$(pwd)"/.wskprops openwhisk-src/bin/wsk -i trigger create periodic --feed /whisk.system/alarms/alarm -p cron '* * * * * *' -p trigger_payload '{"hello":"world"}'
 echo "Waiting for kafka provider to be up"
 until (curl --silent http://localhost:8082/health > /dev/null); do printf '.'; sleep 5; done
 echo "Waiting for cloudant provider to be up"
