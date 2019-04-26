@@ -40,10 +40,13 @@ make add-catalog create-provider-alarms create-provider-kafka create-provider-cl
 # check providers health
 echo "Waiting for alarm provider to be up"
 until (curl --silent http://localhost:8081/health > /dev/null); do printf '.'; sleep 5; done
+echo "Alarm package is up"
 echo "Waiting for kafka provider to be up"
 until (curl --silent http://localhost:8082/health > /dev/null); do printf '.'; sleep 5; done
+echo "Kafka/messaging package is up"
 echo "Waiting for cloudant provider to be up"
 until (curl --silent http://localhost:5000/health > /dev/null); do printf '.'; sleep 5; done
+echo "Cloudant package is up"
 
 # move wskprops and wsk binary
 mv "$(pwd)"/.wskprops "${HOME}"/.wskprops
